@@ -1,0 +1,47 @@
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="css/estilos.css">
+
+  </head>
+  <body>
+    
+    <div class="contenedor-principal">
+      <div class="juego">
+        <canvas id="tablero-juego" width="200" height="400"></canvas>
+
+        <div class="contenedor-previa">
+          <div class="vista-previa-container">
+            <h3 style="color: black;">Siguiente</h3>
+            <canvas id="vista-previa" width="80" height="50"></canvas>
+          </div>
+  
+          <div class="datos-juego">
+            <div id="contador-lineas">LINEAS: <span>0</span></div>
+            <div id="puntaje">PUNTAJE: <span>0</span></div>
+            <div id="nivel">NIVEL: <span>0</span></div>
+          </div>
+        </div>
+  
+      </div>
+      
+
+      <div class="contenedor-boton-reinicio">
+        <button id="reiniciar">🔄 Reiniciar</button>
+      </div>
+    </div>
+  
+
+    <div class="controles">
+      <button id="izquierda">⬅️</button>
+      <button id="rotar">🔄</button>
+      <button id="derecha">➡️</button>
+      <button id="bajar">⬇️</button>
+    </div>
+
+    <script src="js/codigo.js"></script>
+  </body>
+  </html>

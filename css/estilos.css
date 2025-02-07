@@ -1,0 +1,113 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  background: linear-gradient(135deg, rgb(116, 235, 213), rgb(159, 172, 230));
+  font-family: 'Courier New', Courier, monospace;
+}
+
+canvas {
+  background-color: black;
+  border: 1px solid white;
+}
+
+.juego {
+  display: flex;
+}
+.contenedor-principal{
+  padding: 2em;
+  background: white;
+}
+#tablero-juego{
+  border: black 2px solid;
+  margin-right: 0.2em;
+}
+.contenedor-previa {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  padding: 1em;
+  color: white;
+  border: black 2px solid;
+
+}
+
+.vista-previa-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0.5em;
+
+}
+
+#vista-previa {
+  background-color: #645c84;
+  border:10px double black;
+
+  padding: 0.5em 0em 0em 0.7em;
+}
+
+.datos-juego {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: black;
+  text-align: left;
+  font-weight: bold;
+}
+
+.datos-juego span {
+  color: black;
+  font-weight: bold;
+}
+
+.controles {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:active {
+  background-color: lightgray;
+}
+
+.controles {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .controles {
+    display: flex;
+  }
+}
+#reiniciar {
+  background-color: #645c84;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#reiniciar:active {
+  background-color: lightgray;
+}
+.contenedor-boton-reinicio {
+  margin-top: 1em;
+  text-align: center;
+}

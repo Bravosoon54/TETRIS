@@ -8,21 +8,26 @@
 
   </head>
   <body>
+    <div id="pantalla-inicio">
+      <div class="contenido-inicio">
+        <button id="boton-inicio">Iniciar Juego</button>
+      </div>
+    </div>
     
-    <div class="contenedor-principal">
+    <div class="contenedor-principal" style="display: none;">
       <div class="juego">
         <canvas id="tablero-juego" width="200" height="400"></canvas>
 
         <div class="contenedor-previa">
           <div class="vista-previa-container">
-            <h3 style="color: black;">Siguiente</h3>
+            <h3 style="color: white;">SIGUIENTE</h3>
             <canvas id="vista-previa" width="80" height="50"></canvas>
           </div>
   
           <div class="datos-juego">
-            <div id="contador-lineas">LINEAS: <span>0</span></div>
-            <div id="puntaje">PUNTAJE: <span>0</span></div>
-            <div id="nivel">NIVEL: <span>0</span></div>
+            <div id="contador-lineas">LINEAS: 0</div>
+            <div id="puntaje">PUNTAJE: 0</div>
+            <div id="nivel">NIVEL: 0</div>
           </div>
         </div>
   
@@ -30,8 +35,10 @@
       
 
       <div class="contenedor-boton-reinicio">
-        <button id="reiniciar">🔄 Reiniciar</button>
+        <button id="reiniciar">Reiniciar</button>
+        <button id="boton-menu">Menú</button>
       </div>
+      
     </div>
   
 

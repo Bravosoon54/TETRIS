@@ -4,49 +4,38 @@ body {
   justify-content: center;
   align-items: center;
   height: 600px;
-  background: linear-gradient(135deg, rgb(116, 235, 213), rgb(159, 172, 230));
+  background: linear-gradient(135deg, rgb(166, 142, 209), rgb(22, 0, 83));
   font-family: 'Courier New', Courier, monospace;
-}
-
-canvas {
-  background-color: black;
-  border: 1px solid white;
 }
 
 .juego {
   display: flex;
 }
-.contenedor-principal{
+
+.contenedor-principal {
   padding: 2em;
-  background: white;
+  background: black;
+  border-radius: 2em;
 }
-#tablero-juego{
-  border: black 2px solid;
+
+#tablero-juego {
+  border: #645c84 10px double;
   margin-right: 0.2em;
 }
+
 .contenedor-previa {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: white;
+  background-color: black;
   padding: 1em;
   color: white;
-  border: black 2px solid;
-
-}
-
-.vista-previa-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 0.5em;
-
+  border: #645c84 10px double;
 }
 
 #vista-previa {
   background-color: #645c84;
-  border:10px double black;
-
+  border: 10px double black;
   padding: 0.5em 0em 0em 0.7em;
 }
 
@@ -54,16 +43,22 @@ canvas {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  color: black;
+  color: #cdc4f0;
   text-align: left;
   font-weight: bold;
 }
-
-.datos-juego span {
-  color: black;
-  font-weight: bold;
+#contador-lineas{
+  border-top: 2px dashed #645c84;
+  padding-top: 0.5em;
 }
-
+#puntaje{
+  border-top: 2px dashed #645c84;
+  padding-top: 0.5em;
+}
+#nivel{
+  border-top: 2px dashed #645c84;
+  padding-top: 0.5em;
+}
 .controles {
   display: flex;
   justify-content: center;
@@ -94,6 +89,8 @@ button:active {
     display: flex;
   }
 }
+
+
 #reiniciar {
   background-color: #645c84;
   color: white;
@@ -107,7 +104,60 @@ button:active {
 #reiniciar:active {
   background-color: lightgray;
 }
+
 .contenedor-boton-reinicio {
   margin-top: 1em;
   text-align: center;
+}
+
+
+#pantalla-inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  padding: 2em;
+  background-image: url('../img/tetris-game-boy.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  z-index: 10;
+}
+
+
+#pantalla-inicio .contenido-inicio {
+  text-align: center;
+  color: white;
+}
+
+#boton-inicio {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  margin-top: 5em;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#boton-inicio:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black;
+}
+
+#boton-menu {
+  background-color: #645c84;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#boton-menu:active {
+  background-color: lightgray;
 }

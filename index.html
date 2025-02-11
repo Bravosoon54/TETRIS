@@ -1,54 +1,74 @@
-  <!DOCTYPE html>
-  <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tetris</title>
-    <link rel="stylesheet" href="css/estilos.css">
+<!DOCTYPE html>
+<html lang="es">
 
-  </head>
-  <body>
-    <div id="pantalla-inicio">
-      <div class="contenido-inicio">
-        <button id="boton-inicio">Iniciar Juego</button>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris</title>
+  <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+  <div class="inicio">
+    <button id="boton_inicio">
+      start
+    </button>
+
+  </div>
+  <div id="game-over-container" style="display: none;">
+    <div id="game-over-message">
+      <h1>Juego Terminado</h1>
+      <button id="reiniciar-juego">Reiniciar</button>
     </div>
-    
-    <div class="contenedor-principal" style="display: none;">
-      <div class="juego">
-        <canvas id="tablero-juego" width="200" height="400"></canvas>
+  </div>
 
-        <div class="contenedor-previa">
-          <div class="vista-previa-container">
-            <h3 style="color: white;">SIGUIENTE</h3>
-            <canvas id="vista-previa" width="80" height="50"></canvas>
-          </div>
-  
-          <div class="datos-juego">
-            <div id="contador-lineas">LINEAS: 0</div>
-            <div id="puntaje">PUNTAJE: 0</div>
-            <div id="nivel">NIVEL: 0</div>
-          </div>
+
+  <div class="contenedor-principal" style="display: none;">
+    <h1 class="t">T</h1>
+          <h1 class="e">E</h1>
+          <h1 class="t">T</h1>
+          <h1 class="r">R</h1>
+          <h1 class="i">I</h1>
+          <h1 class="s">S</h1>
+
+    <div class="juego">
+      <canvas id="tablero-juego" width="200" height="400"></canvas>
+
+      <div class="contenedor-previa">
+        <div class="vista-previa-container">
+          <h3 style="color: white;">SIGUIENTE</h3>
+          <canvas id="vista-previa" width="80" height="50"></canvas>
         </div>
-  
-      </div>
-      
 
-      <div class="contenedor-boton-reinicio">
-        <button id="reiniciar">Reiniciar</button>
-        <button id="boton-menu">Menú</button>
+        <div class="datos-juego">
+          <div id="contador-lineas">LINEAS: 0</div>
+          <div id="puntaje">PUNTAJE: 0</div>
+          <div id="nivel">NIVEL: 0</div>
+        </div>
       </div>
-      
+
     </div>
-  
 
+
+    <div class="contenedor-boton-reinicio">
+      <button id="reiniciar">Reiniciar</button>
+
+    </div>
     <div class="controles">
       <button id="izquierda">⬅️</button>
       <button id="rotar">🔄</button>
       <button id="derecha">➡️</button>
       <button id="bajar">⬇️</button>
     </div>
+  </div>
 
-    <script src="js/codigo.js"></script>
-  </body>
-  </html>
+  <audio id="audioMover" src="audio/mover.m4a"></audio>
+  <audio id="audioCaer" src="audio/caer.m4a"></audio>
+  <audio id="audioRotar" src="audio/arriba.m4a"></audio>
+  
+
+  <script src="js/codigo.js"></script>
+</body>
+
+</html>

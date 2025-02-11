@@ -1,29 +1,55 @@
 const lienzo = document.getElementById('tablero-juego');
-const contexto = lienzo.getContext('2d');
+const ctx = lienzo.getContext('2d');
 const lienzoPrevia = document.getElementById('vista-previa');
-const contextoPrevia = lienzoPrevia.getContext('2d');
+const ctxPrevia = lienzoPrevia.getContext('2d');
 const COLUMNAS = 10;
 const FILAS = 20;
 const TAMANO_BLOQUE = 20;
-contexto.scale(TAMANO_BLOQUE, TAMANO_BLOQUE);
-contextoPrevia.scale(18, 18);
+ctx.scale(TAMANO_BLOQUE, TAMANO_BLOQUE);
+ctxPrevia.scale(18, 18);
+
+document.getElementById('boton_inicio').addEventListener('click', () => {
+    const opciones = document.querySelector('.inicio');
+    const contenedorPrincipal = document.querySelector('.contenedor-principal');
+
+        opciones.style.display = 'none';
+        contenedorPrincipal.style.display = 'block';
+
+    reiniciarJuego();
+});
+let audioMover = document.getElementById('audioMover');
+let audioCaer = document.getElementById('audioCaer');
+let audioRotar = document.getElementById('audioRotar');
+
+function reproducirAudio(audio) {
+    // Detener el audio actual si está sonando
+    if (!audio.paused) {
+        audio.pause(); // Detiene el audio
+        audio.currentTime = 0; // Resetea al inicio
+    }
+    audio.play(); // Reproduce el nuevo sonido
+}
+
+
+
+let juegoTerminado = false;
+
+document.getElementById('reiniciar-juego').addEventListener('click', () => {
+    document.getElementById('game-over-container').style.display = 'none';
+    reiniciarJuego();
+});
+window.addEventListener('load', () => {
+    document.getElementById('game-over-container').style.display = 'none';
+});
 
 document.getElementById('reiniciar').addEventListener('click', reiniciarJuego);
-document.getElementById('boton-inicio').addEventListener('click', () => {
-    document.getElementById('pantalla-inicio').style.display = 'none';
-    document.querySelector('.contenedor-principal').style.display = 'block';
-    reiniciarJuego();
-  });
 
-  const botonMenu = document.getElementById('boton-menu');
-const pantallaInicio = document.getElementById('pantalla-inicio');
-const contenedorPrincipal = document.querySelector('.contenedor-principal');
+function mostrarGameOver() {
+    document.getElementById('game-over-container').style.display = 'flex';
+    juegoTerminado = true; // Marca el juego como terminado
+    clearInterval(temporizadorCaida);
+}
 
-botonMenu.addEventListener('click', () => {
-  contenedorPrincipal.style.display = 'none';
-  pantallaInicio.style.display = 'flex';
-});
-  
 const PIEZAS = [
     [[1, 1, 1, 1]],
     [[1, 1], [1, 1]],
@@ -33,7 +59,6 @@ const PIEZAS = [
     [[1, 1, 1], [1, 0, 0]],
     [[1, 1, 1], [0, 0, 1]]
 ];
-
 
 let tablero, fichaActual, siguienteFicha, posXActual, posYActual, lineasEliminadas, puntaje, nivel;
 const contadorLineas = document.getElementById('contador-lineas');
@@ -83,14 +108,14 @@ function reiniciarJuego() {
 }
 
 function dibujarTablero() {
-    contexto.clearRect(0, 0, COLUMNAS, FILAS);
+    ctx.clearRect(0, 0, COLUMNAS, FILAS);
     tablero.forEach((fila, y) => {
         fila.forEach((valor, x) => {
-            contexto.fillStyle = valor ? '#645c84' : '#ecf0f1';
-            contexto.fillRect(x, y, 1, 1);
-            contexto.strokeStyle = '#dcdcdc';
-            contexto.lineWidth = 0.05;
-            contexto.strokeRect(x, y, 1, 1);
+            ctx.fillStyle = valor ? '#645c84' : '#ecf0f1';
+            ctx.fillRect(x, y, 1, 1);
+            ctx.strokeStyle = '#dcdcdc';
+            ctx.lineWidth = 0.05;
+            ctx.strokeRect(x, y, 1, 1);
         });
     });
 }
@@ -99,27 +124,27 @@ function dibujarFicha() {
     fichaActual.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor) {
-                contexto.fillStyle = 'red';
-                contexto.fillRect(x + posXActual, y + posYActual, 1, 1);
-                contexto.strokeRect(x + posXActual, y + posYActual, 1, 1);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(x + posXActual, y + posYActual, 1, 1);
+                ctx.strokeRect(x + posXActual, y + posYActual, 1, 1);
             }
         });
     });
 }
 
 function dibujarPrevia() {
-    contextoPrevia.clearRect(0, 0, 4, 4);
+    ctxPrevia.clearRect(0, 0, 4, 4);
     const anchoFicha = siguienteFicha[0].length;
     const offsetX = Math.floor((4 - anchoFicha) / 2);
 
     siguienteFicha.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor) {
-                contextoPrevia.fillStyle = 'red';
-                contextoPrevia.fillRect(x + offsetX, y, 1, 1);
-                contextoPrevia.strokeStyle = 'black';
-                contextoPrevia.lineWidth = 0.05;
-                contextoPrevia.strokeRect(x + offsetX, y, 1, 1);
+                ctxPrevia.fillStyle = 'red';
+                ctxPrevia.fillRect(x + offsetX, y, 1, 1);
+                ctxPrevia.strokeStyle = 'black';
+                ctxPrevia.lineWidth = 0.05;
+                ctxPrevia.strokeRect(x + offsetX, y, 1, 1);
             }
         });
     });
@@ -129,6 +154,7 @@ function bajarFicha() {
     posYActual++;
     if (hayColision()) {
         posYActual--;
+        reproducirAudio(audioCaer);
         fusionarFicha();
         calcularPuntajeYEliminarLineas();
         fichaActual = siguienteFicha;
@@ -138,8 +164,8 @@ function bajarFicha() {
 
         if (hayColision()) {
             setTimeout(() => {
-                alert('Juego terminado');
-                reiniciarJuego();
+                mostrarGameOver();
+
             }, 0);
         }
     }
@@ -231,24 +257,34 @@ document.getElementById('rotar').addEventListener('click', () => {
     dibujar();
 });
 
+function rotarFicha(ficha, revertir = false) {
+    const nuevaFicha = ficha[0].map((_, i) => ficha.map(row => row[i]));
+    return revertir ? nuevaFicha.reverse() : nuevaFicha.map(row => row.reverse());
+}
+
 document.addEventListener('keydown', (evento) => {
+    if (juegoTerminado) return; 
     switch (evento.key) {
         case 'ArrowLeft':
             posXActual--;
+            reproducirAudio(audioMover);
             if (hayColision()) posXActual++;
             dibujar();
             break;
         case 'ArrowRight':
             posXActual++;
+            reproducirAudio(audioMover);
             if (hayColision()) posXActual--;
             dibujar();
             break;
         case 'ArrowUp':
             fichaActual = rotarFicha(fichaActual);
+            reproducirAudio(audioRotar); 
             if (hayColision()) fichaActual = rotarFicha(fichaActual, true);
             dibujar();
             break;
         case 'ArrowDown':
+            reproducirAudio(audioMover);
             bajarFicha();
             break;
     }
@@ -267,10 +303,10 @@ function dibujar() {
 
 function manejarCambioDeVisibilidad() {
     if (document.hidden) {
-
+        juegoPausado = true;
         clearInterval(temporizadorCaida);
     } else {
-
+        juegoPausado = false;
         reiniciarTemporizador();
     }
 }

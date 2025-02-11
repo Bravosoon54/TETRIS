@@ -22,12 +22,12 @@ let audioCaer = document.getElementById('audioCaer');
 let audioRotar = document.getElementById('audioRotar');
 
 function reproducirAudio(audio) {
-    // Detener el audio actual si está sonando
+    
     if (!audio.paused) {
-        audio.pause(); // Detiene el audio
-        audio.currentTime = 0; // Resetea al inicio
+        audio.pause();
+        audio.currentTime = 0;
     }
-    audio.play(); // Reproduce el nuevo sonido
+    audio.play();
 }
 
 
@@ -46,7 +46,7 @@ document.getElementById('reiniciar').addEventListener('click', reiniciarJuego);
 
 function mostrarGameOver() {
     document.getElementById('game-over-container').style.display = 'flex';
-    juegoTerminado = true; // Marca el juego como terminado
+    juegoTerminado = true;
     clearInterval(temporizadorCaida);
 }
 

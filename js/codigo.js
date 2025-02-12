@@ -48,7 +48,7 @@ function mostrarGameOver() {
     document.getElementById('game-over-container').style.display = 'flex';
     juegoTerminado = true;
     clearInterval(temporizadorCaida);
-}
+};
 
 const PIEZAS = [
     [[1, 1, 1, 1]],
@@ -89,7 +89,7 @@ let temporizadorCaida;
 function obtenerFichaAleatoria() {
     const indice = Math.floor(Math.random() * PIEZAS.length);
     return PIEZAS[indice];
-}
+};
 
 function reiniciarJuego() {
     tablero = Array.from({ length: FILAS }, () => Array(COLUMNAS).fill(0));
@@ -105,7 +105,7 @@ function reiniciarJuego() {
     nivelDisplay.textContent = "NIVEL: " + nivel;
     actualizarVelocidad();
     dibujar();
-}
+};
 
 function dibujarTablero() {
     ctx.clearRect(0, 0, COLUMNAS, FILAS);
@@ -118,7 +118,7 @@ function dibujarTablero() {
             ctx.strokeRect(x, y, 1, 1);
         });
     });
-}
+};
 
 function dibujarFicha() {
     fichaActual.forEach((fila, y) => {
@@ -130,7 +130,7 @@ function dibujarFicha() {
             }
         });
     });
-}
+};
 
 function dibujarPrevia() {
     ctxPrevia.clearRect(0, 0, 4, 4);
@@ -148,7 +148,7 @@ function dibujarPrevia() {
             }
         });
     });
-}
+};
 
 function bajarFicha() {
     posYActual++;
@@ -167,10 +167,10 @@ function bajarFicha() {
                 mostrarGameOver();
 
             }, 0);
-        }
-    }
+        };
+    };
     dibujar();
-}
+};
 
 function hayColision() {
     for (let y = 0; y < fichaActual.length; y++) {
@@ -180,22 +180,22 @@ function hayColision() {
                 const tableroX = x + posXActual;
                 if (tablero[tableroY]?.[tableroX] === undefined || tablero[tableroY][tableroX]) {
                     return true;
-                }
-            }
-        }
-    }
+                };
+            };
+        };
+    };
     return false;
-}
+};
 
 function fusionarFicha() {
     fichaActual.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor) {
                 tablero[y + posYActual][x + posXActual] = valor;
-            }
+            };
         });
     });
-}
+};
 
 function calcularPuntajeYEliminarLineas() {
     let lineasEliminadasSimultaneas = 0;
@@ -204,8 +204,8 @@ function calcularPuntajeYEliminarLineas() {
             tablero.splice(y, 1);
             tablero.unshift(new Array(COLUMNAS).fill(0));
             lineasEliminadasSimultaneas++;
-        }
-    }
+        };
+    };
     if (lineasEliminadasSimultaneas > 0) {
         const puntosPorLinea = [0, 100, 200, 400, 800];
         puntaje += puntosPorLinea[lineasEliminadasSimultaneas];
@@ -217,23 +217,23 @@ function calcularPuntajeYEliminarLineas() {
             nivel++;
             nivelDisplay.textContent = "NIVEL: " + nivel;
             actualizarVelocidad();
-        }
-    }
-}
+        };
+    };
+};
 
 function actualizarVelocidad() {
     for (let nivelMax in VELOCIDAD_CAIDA) {
         if (nivel >= nivelMax) {
             velocidadCaida = VELOCIDAD_CAIDA[nivelMax];
-        }
-    }
+        };
+    };
     reiniciarTemporizador();
-}
+};
 
 function reiniciarTemporizador() {
     clearInterval(temporizadorCaida);
     temporizadorCaida = setInterval(bajarFicha, velocidadCaida);
-}
+};
 
 document.getElementById('izquierda').addEventListener('click', () => {
     posXActual--;
@@ -260,7 +260,7 @@ document.getElementById('rotar').addEventListener('click', () => {
 function rotarFicha(ficha, revertir = false) {
     const nuevaFicha = ficha[0].map((_, i) => ficha.map(row => row[i]));
     return revertir ? nuevaFicha.reverse() : nuevaFicha.map(row => row.reverse());
-}
+};
 
 document.addEventListener('keydown', (evento) => {
     if (juegoTerminado) return; 
@@ -287,19 +287,19 @@ document.addEventListener('keydown', (evento) => {
             reproducirAudio(audioMover);
             bajarFicha();
             break;
-    }
+    };
 });
 
 function rotarFicha(ficha, revertir = false) {
     const nuevaFicha = ficha[0].map((_, i) => ficha.map(row => row[i]));
     return revertir ? nuevaFicha.reverse() : nuevaFicha.map(row => row.reverse());
-}
+};
 
 function dibujar() {
     dibujarTablero();
     dibujarFicha();
     dibujarPrevia();
-}
+};
 
 function manejarCambioDeVisibilidad() {
     if (document.hidden) {
@@ -308,8 +308,8 @@ function manejarCambioDeVisibilidad() {
     } else {
         juegoPausado = false;
         reiniciarTemporizador();
-    }
-}
+    };
+};
 
 document.addEventListener('visibilitychange', manejarCambioDeVisibilidad);
 

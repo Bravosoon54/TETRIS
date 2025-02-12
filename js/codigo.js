@@ -127,7 +127,7 @@ function dibujarFicha() {
                 ctx.fillStyle = 'red';
                 ctx.fillRect(x + posXActual, y + posYActual, 1, 1);
                 ctx.strokeRect(x + posXActual, y + posYActual, 1, 1);
-            }
+            };
         });
     });
 };

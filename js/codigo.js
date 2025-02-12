@@ -145,7 +145,7 @@ function dibujarPrevia() {
                 ctxPrevia.strokeStyle = 'black';
                 ctxPrevia.lineWidth = 0.05;
                 ctxPrevia.strokeRect(x + offsetX, y, 1, 1);
-            }
+            };
         });
     });
 };

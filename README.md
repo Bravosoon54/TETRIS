@@ -20,7 +20,4 @@ Es una versión simple del clásico juego Tetris. Puedes mover y rotar las pieza
 Estoy aprendiendo desarrollo web y quería practicar con un proyecto divertido. Me ayudó a entender mejor cómo funciona el DOM, los eventos y el canvas en JavaScript.
 
 ## Créditos
-- Aprendiz SENA
 - Particles.js para el fondo animado
-
-Si tienes sugerencias o encuentras algún error, ¡me gustaría saberlo! Gracias por ver mi proyecto :)

@@ -6,31 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tetris</title>
   <link rel="stylesheet" href="css/estilos.css">
-
 </head>
 
 <body>
-  <div class="inicio">
-    <button id="boton_inicio">
-      start
-    </button>
+  
+  <div id="particles-js"></div>
 
-  </div>
-  <div id="game-over-container" style="display: none;">
-    <div id="game-over-message">
-      <h1>Juego Terminado</h1>
-      <button id="reiniciar-juego">Reiniciar</button>
+  
+  <div class="overlay-inicio">
+    <div class="contenido-inicio">
+      <h1 class="titulo-juego">
+        <span class="t">T</span>
+        <span class="e">E</span>
+        <span class="t">T</span>
+        <span class="r">R</span>
+        <span class="i">I</span>
+        <span class="s">S</span>
+      </h1>
+      <button id="boton-inicio" class="boton-inicio">Iniciar Juego</button>
     </div>
   </div>
 
-
+  
   <div class="contenedor-principal" style="display: none;">
     <h1 class="t">T</h1>
-          <h1 class="e">E</h1>
-          <h1 class="t">T</h1>
-          <h1 class="r">R</h1>
-          <h1 class="i">I</h1>
-          <h1 class="s">S</h1>
+    <h1 class="e">E</h1>
+    <h1 class="t">T</h1>
+    <h1 class="r">R</h1>
+    <h1 class="i">I</h1>
+    <h1 class="s">S</h1>
 
     <div class="juego">
       <canvas id="tablero-juego" width="200" height="400"></canvas>
@@ -47,13 +51,10 @@
           <div id="nivel">NIVEL: 0</div>
         </div>
       </div>
-
     </div>
-
 
     <div class="contenedor-boton-reinicio">
       <button id="reiniciar">Reiniciar</button>
-
     </div>
     <div class="controles">
       <button id="izquierda">⬅️</button>
@@ -63,11 +64,26 @@
     </div>
   </div>
 
+  
+<div id="game-over-container" style="display: none;">
+  <div class="game-over-content">
+    <h1 class="game-over-title">¡GAME OVER!</h1>
+    <div class="score-display">
+      <div class="final-score">Puntaje Final: <span id="final-score">0</span></div>
+      <div class="final-lines">Líneas: <span id="final-lines">0</span></div>
+      <div class="final-level">Nivel: <span id="final-level">0</span></div>
+    </div>
+    <button id="reiniciar-juego" class="restart-button">Reiniciar Juego</button>
+  </div>
+</div>
+
+  
   <audio id="audioMover" src="audio/mover.m4a"></audio>
   <audio id="audioCaer" src="audio/caer.m4a"></audio>
   <audio id="audioRotar" src="audio/arriba.m4a"></audio>
-  
 
+  
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="js/codigo.js"></script>
 </body>
 

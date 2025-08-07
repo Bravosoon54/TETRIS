@@ -18,4 +18,4 @@ Es una versión simple del clásico juego Tetris. Puedes mover y rotar las pieza
 
 
 ## Créditos
-- Particles.js para el fondo animado
+- Particles.js se usó para el fondo animado. Su integración la realicé con ayuda de tutoriales de YouTube y asistencia de inteligencia artificial 
